@@ -1,14 +1,14 @@
+from dataclasses import dataclass
+
+
+@dataclass
 class Deck:
     """Represents one deck (cell) of a ship:
     contains its coordinates and alive/dead state."""
 
-    def __init__(self,
-                 row: int,
-                 column: int,
-                 is_alive: bool = True) -> None:
-        self.row = row
-        self.column = column
-        self.is_alive = is_alive
+    row: int
+    column: int
+    is_alive: bool = True
 
 
 class Ship:
@@ -47,7 +47,7 @@ class Ship:
         for deck in self.decks:
             if deck.row == row and deck.column == column:
                 return deck
-        return None
+        return
 
     def fire(self, row: int, column: int) -> str | None:
         """
@@ -63,7 +63,7 @@ class Ship:
                 self.is_drowned = True
                 return "Sunk!"
             return "Hit!"
-        return None
+        return
 
 
 class Battleship:
